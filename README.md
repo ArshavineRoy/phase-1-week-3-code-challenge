@@ -7,18 +7,11 @@
 
 ## Introduction
 
-This is a code challenge for Phase 1 Week 3 whose aim is implementing a mini web app to practice on:
-
-- `Array Iteration`
-- `DOM Manipulation`
-- `JavaScript Events`
-- `Server Communication`
+This is a code challenge for Phase 1 Week 3 whose aim is implementing a 'mini' web application using `JavaScript`.
 
 This challenge involves building out an application, Flatdango, that allows a user to purchase movie tickets from the Flatiron Movie Theater. I will use a local API and build out a simple front-end for the app.
 
 Below is an image of the mini web app:
-
-![Flatacuties Screen Grab](resources/flatacuties-grab.png)
 
 
 ## Project Setup
@@ -30,24 +23,22 @@ Use this link to directly open the web app deployed via GitHub Pages.
 NB: This doesn't require you to set up the local server.
 
 ```
-https://arshavineroy.github.io/phase-1-week-2-code-challenge/
+https://arshavineroy.github.io/phase-1-week-3-code-challenge/
 ```
 
 #### How to use the app
-- Use the animal list to view an animal's details, including its image.
-- Use the like button to vote for an animal.
-- Use the reset button to set the votes to zero.
+...
 
 #### Alternatively,
 
 ### 1. Clone the repository
 ```
-git clone https://github.com/ArshavineRoy/phase-1-week-2-code-challenge
+git clone https://github.com/ArshavineRoy/phase-1-week-3-code-challenge
 ```
 
 ### 2. Navigate to the project directory
 ```
-cd phase-1-week-2-code-challenge
+cd phase-1-week-3-code-challenge
 ```
 
 ### 3. Install and start JSON server
@@ -66,7 +57,7 @@ json-server --watch db.json
 Test the server by visiting this route in the browser
 
 ```
-http://localhost:3000/characters
+http://localhost:3000/films
 ```
 
 ### Several ways to launch the app
@@ -92,103 +83,110 @@ This will automatically launch a local development server and open the mini app 
 ## Core Deliverables for this Challenge
 A user should be able to:
 
-1. See a list of all animal names. A GET request is made to the following endpoint to retrieve the character data
+1. See the first movie's details, including its poster, title, runtime, showtime, and available tickets when the page loads. The number of available tickets will need to be derived by subtracting the number of `tickets_sold` from the theater's `capacity`. A GET request is made to the following endpoint to retrieve the film data:
 ```js
-$ GET /characters
+$ GET /films/1
 ```
 
 Example Response:
 
 ```json
-   {
-
-     "id": 1,
-
-     "name": "Mr. Cute",
-
-     "image": "https://thumbs.gfycat.com/EquatorialIckyCat-max-1mb.gif",
-
-     "votes": 0
-
-   },
-
-   {
-
-     "id": 2,
-
-     "name": "Mx. Monkey",
-
-     "image": "https://thumbs.gfycat.com/FatalInnocentAmericanshorthair-max-1mb.gif",
-
-     "votes": 0   },
-```
-
-2. Click on an animal’s name to see its details i.e., image and number of votes. Details should be displayed for one animal at a time. To get get a character's details:
-
-```js
-$ GET /characters/:id
-```
-Example Response:
-
-```json
 {
-
-     "id": 1,
-
-     "name": "Mr. Cute",
-
-     "image": "https://thumbs.gfycat.com/EquatorialIckyCat-max-1mb.gif",
-
-     "votes": 0
-
-   },
-```
-
-3. When viewing an animal’s details, the user should be able to add the number of votes for each animal. The number of votes should then be displayed together with the animal’s details. No persistence is needed for the votes.
-
-The server DB for this app has been obtained from:
-
-```json
-{
-  "characters": [
-    {
-      "id": 1,
-      "name": "Mr. Cute",
-      "image": "https://thumbs.gfycat.com/EquatorialIckyCat-max-1mb.gif",
-      "votes": 45
-    },
-    {
-      "id": 2,
-      "name": "Mr. Monkey",
-      "image": "https://thumbs.gfycat.com/FatalInnocentAmericanshorthair-max-1mb.gif",
-      "votes": 33
-    },
-    {
-      "id": 3,
-      "name": "Ms. Zebra",
-      "image": "https://media2.giphy.com/media/20G9uNqE3K4dRjCppA/source.gif",
-      "votes": 104
-    },
-    {
-      "id": 4,
-      "name": "Dr. Lion",
-      "image": "http://bestanimations.com/Animals/Mammals/Cats/Lions/animated-lion-gif-11.gif",
-      "votes": 23
-    },
-    {
-      "id": 5,
-      "name": "Mr. Panda",
-      "image": "https://media.giphy.com/media/ALalVMOVR8Qw/giphy.gif",
-      "votes": 12
-    }
-  ]
+    "id": "1",
+    "title": "The Giant Gila Monster",
+    "runtime": "108",
+    "capacity": 30,
+    "showtime": "04:00PM",
+    "tickets_sold": 27,
+    "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
+    "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
 }
 ```
 
+2. See a menu of all movies on the left side of the page in the `ul#films` element when the page loads. (_optional_: you can style each film in the list by adding the classes `film item` to each `li` element.) There is a placeholder `li` in the `ul#films` element that is hardcoded in the HTML — feel free to remove that element by editing the HTML file directly, or use JavaScript to remove the placeholder element before populating the list. You will need to make a GET request to the following endpoint to retrieve the film data:
+
+```js
+$ GET /films
+```
+Example Response:
+
+```json
+[
+  {
+    "id": "1",
+    "title": "The Giant Gila Monster",
+    "runtime": "108",
+    "capacity": 30,
+    "showtime": "04:00PM",
+    "tickets_sold": 27,
+    "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
+    "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Manos: The Hands Of Fate",
+    "runtime": "118",
+    "capacity": 50,
+    "showtime": "06:45PM",
+    "tickets_sold": 44,
+    "description": "A family gets lost on the road and stumbles upon a hidden, underground, devil-worshiping cult led by the fearsome Master and his servant Torgo.",
+    "poster": "https://www.gstatic.com/tv/thumb/v22vodart/47781/p47781_v_v8_ac.jpg"
+  }
+]
+```
+
+3. Buy a ticket for a movie. After clicking the "Buy Ticket" button, I should see the number of available tickets decreasing on the frontend. I should not be able to buy a ticket if the showing is sold out (if there are 0 tickets available). **No persistence is needed for this feature**.
+
+
 ## Bonus Deliverables
 
-- Add a reset button that resets the votes back to 0. (done)
-- Have a form for adding animals. (a dummy form made)
+1. Click on a movie in the menu to replace the currently displayed movie's details with the new movie's details. Note that you may have to make an additional GET request to access the movie's details.
+
+2. When a movie is sold out (when there are no available tickets remaining), indicate that the movie is sold out by changing the button text to "Sold Out". Also update the film item in the `ul#films` menu by adding a class of `sold-out` to the film. For reference, here's what the contents of the `ul#films` element should look like with a sold out film:
+
+```html
+<li class="film item">(Title of film)</li>
+<li class="sold-out film item">(Title of a sold-out film)</li>
+<li class="film item">(Title of film)</div>
+```
+
+## Extra Bonus
+These extra bonus deliverables involve using `fetch` to update data on the `json-server` backend by using `POST`, `PATCH`, and `DELETE` requests.
+
+1. When a ticket is purchased, persist the updated number of `tickets_sold` on the server. Remember, the frontend shows the number of available tickets based on the `tickets_sold` and the `capacity`, so only the `tickets_sold` should be updated on the backend when a ticket is purchased. You will need to make a request that follows this structure:
+
+```txt
+   PATCH /films/:id
+
+   Request Headers: {
+     Content-Type: application/json
+   }
+
+   Request Body: {
+     "tickets_sold": 28
+   }
+   ----
+   Example Response:
+   {
+      "id": "1",
+      "title": "The Giant Gila Monster",
+      "runtime": "108",
+      "capacity": 30,
+      "showtime": "04:00PM",
+      "tickets_sold": 28,
+      "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
+      "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
+   }
+   ```
+
+2. Delete a film from the server. Add a delete button next to each film in the `ul#films` menu. When the button is clicked, remove the film from the list and also delete the film on the server:
+
+```txt
+   DELETE /films/:id
+
+   Example Response:
+   {}
+```
 
 ## Author & License
 
