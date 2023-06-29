@@ -13,7 +13,6 @@ This challenge involves building out an application, Flatdango, that allows a us
 
 Below is an image of the mini web app:
 
-
 ## Project Setup
 
 ### View the web app via GH Pages
@@ -27,16 +26,19 @@ https://arshavineroy.github.io/phase-1-week-3-code-challenge/
 ```
 
 #### How to use the app
+
 ...
 
 #### Alternatively,
 
 ### 1. Clone the repository
+
 ```
 git clone https://github.com/ArshavineRoy/phase-1-week-3-code-challenge
 ```
 
 ### 2. Navigate to the project directory
+
 ```
 cd phase-1-week-3-code-challenge
 ```
@@ -48,11 +50,14 @@ Install the JSON server
 ```
 npm install -g json-server
 ```
-Start JSON Server (from within the project directory)
+
+Start JSON Server
 
 ```
 json-server --watch db.json
 ```
+
+**Note:** Running this command will instruct `json-server` to use the `db.json` file in the terminal's current directory, so make sure to run this command from the same directory as this project.
 
 Test the server by visiting this route in the browser
 
@@ -61,6 +66,7 @@ http://localhost:3000/films
 ```
 
 ### Several ways to launch the app
+
 ### 4.1. Launch the app using its HTML file
 
 Open `index.html` on your browser, preferably Chrome.
@@ -79,11 +85,12 @@ Open `index.html` and right-click anywehre within the file and select `Open with
 
 This will automatically launch a local development server and open the mini app in your default web browser.
 
-
 ## Core Deliverables for this Challenge
+
 A user should be able to:
 
 1. See the first movie's details, including its poster, title, runtime, showtime, and available tickets when the page loads. The number of available tickets will need to be derived by subtracting the number of `tickets_sold` from the theater's `capacity`. A GET request is made to the following endpoint to retrieve the film data:
+
 ```js
 $ GET /films/1
 ```
@@ -92,14 +99,14 @@ Example Response:
 
 ```json
 {
-    "id": "1",
-    "title": "The Giant Gila Monster",
-    "runtime": "108",
-    "capacity": 30,
-    "showtime": "04:00PM",
-    "tickets_sold": 27,
-    "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
-    "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
+  "id": "1",
+  "title": "The Giant Gila Monster",
+  "runtime": "108",
+  "capacity": 30,
+  "showtime": "04:00PM",
+  "tickets_sold": 27,
+  "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
+  "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
 }
 ```
 
@@ -108,6 +115,7 @@ Example Response:
 ```js
 $ GET /films
 ```
+
 Example Response:
 
 ```json
@@ -137,7 +145,6 @@ Example Response:
 
 3. Buy a ticket for a movie. After clicking the "Buy Ticket" button, I should see the number of available tickets decreasing on the frontend. I should not be able to buy a ticket if the showing is sold out (if there are 0 tickets available). **No persistence is needed for this feature**.
 
-
 ## Bonus Deliverables
 
 1. Click on a movie in the menu to replace the currently displayed movie's details with the new movie's details. Note that you may have to make an additional GET request to access the movie's details.
@@ -151,6 +158,7 @@ Example Response:
 ```
 
 ## Extra Bonus
+
 These extra bonus deliverables involve using `fetch` to update data on the `json-server` backend by using `POST`, `PATCH`, and `DELETE` requests.
 
 1. When a ticket is purchased, persist the updated number of `tickets_sold` on the server. Remember, the frontend shows the number of available tickets based on the `tickets_sold` and the `capacity`, so only the `tickets_sold` should be updated on the backend when a ticket is purchased. You will need to make a request that follows this structure:
@@ -177,7 +185,7 @@ These extra bonus deliverables involve using `fetch` to update data on the `json
       "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
       "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
    }
-   ```
+```
 
 2. Delete a film from the server. Add a delete button next to each film in the `ul#films` menu. When the button is clicked, remove the film from the list and also delete the film on the server:
 
