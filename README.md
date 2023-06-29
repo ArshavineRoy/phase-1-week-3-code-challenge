@@ -57,7 +57,7 @@ Start JSON Server
 json-server --watch db.json
 ```
 
-**Note:** Running this command will instruct `json-server` to use the `db.json` file in the terminal's current directory, so make sure to run this command from the same directory as this project.
+- **Note:** Running this command will instruct `json-server` to use the `db.json` file in the terminal's current directory, so make sure to run this command from the same directory as this project.
 
 Test the server by visiting this route in the browser
 
