@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flatdango: The Movie Hub</title>
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/buttons.css" />
     <script
       src="https://kit.fontawesome.com/2ec18317e9.js"
       crossorigin="anonymous"
@@ -19,25 +20,60 @@
   <body>
     <header id="header">
       <div id="logo">
-        <h1>Flatdango</h1>
+        <i class="fa-solid fa-masks-theater" style="color: #69daba"></i>
       </div>
+      <div class="span" style="color: aliceblue">FLATDANGO: The Movie Hub</div>
       <div class="top-right">
         <ul>
           <li><button id="login">Login</button></li>
           <li><i class="user fa-regular fa-user"></i></li>
-          <li><i class="fa fa-caret-down"></i></li>
+          <li><i class="user fa fa-caret-down"></i></li>
         </ul>
       </div>
     </header>
-    <sidebar class="sidebar">
-      <h2 id="heading">Choose a Movie</h2>
-      <div class="movie-list"></div>
-    </sidebar>
-    <section class="poster-wrapper">
-      <div class="image">
-        <!-- <img src="https://www.gstatic.com/tv/thumb/v22vodart/46755/p46755_v_v8_aa.jpg" alt="film" class="poster"/> -->
+    <main id="main">
+      <div class="sidebar">
+        <div id="sidebar-header">
+          <div id="bottone1"><h2>Choose a Movie</h2></div>
+        </div>
       </div>
-    </section>
-    <footer></footer>
+      <!-- <div class="tickets">
+        <div id="film-details">
+          <h4>
+            Film name: <br />
+            Date: <br />
+            Time: <br />Tickets available:
+          </h4>
+        </div>
+        <h2>Trending Now</h2>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis,
+          non! Totam, iure, inventore dicta sequi ex quas non modi expedita,
+          voluptates itaque reprehenderit quae laudantium excepturi assumenda
+          facere? Repellat quae odio fugiat natus eligendi praesentium, rerum
+          officiis iste accusantium amet!
+        </p>
+      </div> -->
+      <div class="poster-wrapper">
+        <div class="ribbon" id="stick-me">
+          <h4>Film Poster</h4>
+        </div>
+        <div id="poster-container">
+          <div id="poster-div">
+            <img
+              id="poster"
+              src="https://www.gstatic.com/tv/thumb/v22vodart/46755/p46755_v_v8_aa.jpg"
+              alt="film"
+            />
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div id="footer">
+        <h4>&copy2023 Flatdango</h4>
+      </div>
+    </footer>
   </body>
 </html>

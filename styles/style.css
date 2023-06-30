@@ -1,27 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Merienda:wght@300&display=swap");
 
-body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: "Merienda", cursive;
   background-color: rgb(232, 232, 232);
 }
 
 /*--- nav--- */
 
-/* Header */
-
 #header {
   position: sticky;
   top: 0;
+  z-index: 100;
   width: 100%;
+  height: 50px;
   display: flex;
   align-items: center;
-  background-color: rgb(248, 44, 44);
+  background-color: #263038;
   justify-content: space-between;
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
     rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
     rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.fa-masks-theater {
+  font-size: 30px;
+  padding: 20px;
+  margin-left: 15px;
 }
 
 .top-right ul {
@@ -31,10 +41,11 @@ body {
 }
 
 #login {
+  font-family: inherit;
   margin-right: 10px;
   font-size: 18px;
   color: #fff;
-  background-color: rgb(222, 114, 114);
+  background-color: #69daba;
   border-radius: 15px;
   padding-left: 15px;
   padding-right: 15px;
@@ -42,56 +53,117 @@ body {
 
 .user {
   font-size: 24px;
+  color: #69daba;
 }
 
-#heading {
-  color: blue;
-  margin-left: 15px;
-  font-size: 30px;
-}
+/* sidebar --- film names*/
 
 .sidebar {
-  /* border-right: solid 1px black; */
-  flex: 0.2;
-  /* min-width: 250px; */
   margin-top: 0px;
   padding-inline: 20px;
-  border-right: #0fd850 1px solid;
 }
 
-.button-55 {
-  font-weight: bold;
-  cursor: pointer;
-  display: list-item;
-  margin: 15px;
-  font-size: 15px;
-  padding: 0.2em 1em;
-  width: 20em;
-  height: 3em;
-  border-radius: 30em;
-  font-size: 15px;
-  font-family: inherit;
-  border: none;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+#sidebar-header {
+  position: sticky;
+  top: 50px;
+  width: 328px;
+  z-index: 100;
 }
 
-.button-55::before {
-  content: "";
-  width: 0;
-  height: 3em;
-  border-radius: 30em;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
-  transition: 0.5s ease;
-  display: block;
-  z-index: -1;
+/* main div css */
+
+#main {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.button-55:hover::before {
-  width: 20em;
+/* center div start --- details/tickets */
+
+.tickets {
+  margin-inline: 5%;
+}
+
+#film-details {
+  padding: 10px;
+  margin-top: 8px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  font-size: 22px;
+}
+
+/*right div start --- poster*/
+
+.poster-wrapper {
+  margin-inline: 5%;
+}
+
+#poster-container {
+  position: sticky;
+  top: 106px;
+  z-index: 100;
+  margin-top: 4px;
+  padding: 20px;
+  background: rgb(236, 236, 236);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#stick-me {
+  margin-top: 0px;
+  position: sticky;
+  top: 50px;
+  z-index: 100;
+}
+
+#poster {
+  aspect-ratio: 1/1;
+  display: flex;
+  max-height: 600px;
+  min-height: 300px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+.ribbon {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 8px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  font-size: 22px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.icon-container i {
+  margin-right: 12px;
+}
+
+.voted {
+  color: #e0245e;
+}
+
+/* footer */
+#footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: #263038;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
