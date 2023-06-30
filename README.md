@@ -13,6 +13,8 @@ This challenge involves building out an application, Flatdango, that allows a us
 
 Below is an image of the mini web app:
 
+![Image of the app](resources/screenshot.png)
+
 ## Project Setup
 
 ### View the web app via GH Pages

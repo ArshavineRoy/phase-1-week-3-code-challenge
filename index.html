@@ -6,6 +6,7 @@
     <title>Flatdango ~ The Movie Hub</title>
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/buttons.css" />
+    <link rel="stylesheet" href="./styles/cards.css" />
     <script
       src="https://kit.fontawesome.com/2ec18317e9.js"
       crossorigin="anonymous"
@@ -34,26 +35,53 @@
     <main id="main">
       <div class="sidebar">
         <div id="sidebar-header">
-          <div id="bottone1"><h2>Choose a Movie</h2></div>
+          <div id="bottone1">
+            <h2>Now Playing</h2>
+          </div>
         </div>
       </div>
-      <!-- <div class="tickets">
+      <div class="center-div">
+        <div>
+          <h2>
+            Buy movie tickets & condiment to the Flatiron Movie Theater through
+            Flatdango.
+          </h2>
+        </div>
         <div id="film-details">
+          <br />
+          <h3>Film Details</h3>
           <h4>
-            Film name: <br />
-            Date: <br />
-            Time: <br />Tickets available:
+            Film Name: The Giant Gila Monster<br />
+            Date: June 30, 2023<br />
+            Runtime: 108 <br />
+            Showtime: 04:00PM<br />
+            Tickets Available: 3<br />
+            Synopsis: A giant lizard terrorizes a rural Texas community and a
+            heroic teenager attempts to destroy the creature.
           </h4>
         </div>
-        <h2>Trending Now</h2>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis,
-          non! Totam, iure, inventore dicta sequi ex quas non modi expedita,
-          voluptates itaque reprehenderit quae laudantium excepturi assumenda
-          facere? Repellat quae odio fugiat natus eligendi praesentium, rerum
-          officiis iste accusantium amet!
-        </p>
-      </div> -->
+        <div class="tickets">
+          <h3>Purchase a Ticket</h3>
+          <h4>
+            Choose the number of tickets here. This is equivalent to the number
+            of seats reserved.
+          </h4>
+          <div class="ticket-purchase">
+            <input
+              type="number"
+              placeholder="Number of Tickets"
+              name="text"
+              class="input"
+            />
+            <a class="fancy" href="#">
+              <span class="top-key"></span>
+              <span class="text">Buy Tickets</span>
+              <span class="bottom-key-1"></span>
+              <span class="bottom-key-2"></span>
+            </a>
+          </div>
+        </div>
+      </div>
       <div class="poster-wrapper">
         <div class="ribbon" id="stick-me">
           <h4>Film Poster</h4>
@@ -62,9 +90,23 @@
           <div id="poster-div">
             <img
               id="poster"
-              src="https://www.gstatic.com/tv/thumb/v22vodart/46755/p46755_v_v8_aa.jpg"
+              src="https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
               alt="film"
             />
+            <div class="ribbon" id="poster-footer">
+              <div class="icon-container">
+                <i class="fa-regular fa-calendar-days"></i>
+                <span class="icon-count" id="vote-count">June 30, 2023</span>
+              </div>
+              <div class="icon-container" id="comment">
+                <i class="fa-regular fa-clock"></i>
+                <span class="icon-count" id="comment-count">2h 48m</span>
+              </div>
+              <div class="icon-container" id="share">
+                <i class="fa fa-location-dot"></i>
+                <span class="icon-count">Flatiron Movie Theater</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
