@@ -4,9 +4,9 @@
   font-weight: bold;
   cursor: pointer;
   display: list-item;
-  margin: 15px;
+  margin: 12px;
   font-size: 15px;
-  padding: 0.2em 1em;
+  padding: 0.1em 1em;
   width: 20em;
   height: 3em;
   border-radius: 30em;
@@ -27,7 +27,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
+  background-image: linear-gradient(to right, #69daba 10%, #f9f047 90%);
   transition: 0.5s ease;
   display: block;
   z-index: -1;
