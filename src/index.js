@@ -1,21 +1,18 @@
-const URL =
-  "https://arshavineroy.github.io/phase-1-week-3-code-challenge/db.json";
-// fetch data from GH Pages
+// fetch film data
+const URL = "http://localhost:3000/films";
 fetch(URL)
   .then((res) => res.json())
-  .then((data) => {
-    const array = Object.values(data.films); // convert object into an array
-    handleFilms(array);
-  });
+  .then((data) => handleFilms(data));
+// film list buttons
 
-function handleFilms(array) {
+function handleFilms(data) {
   const filmDiv = document.createElement("div");
   filmDiv.classList.add("movie-list");
   const posterDiv = document.querySelector("#poster-box");
   const centerDiv = document.querySelector("#center-div");
   const posterHeader = document.querySelector("#poster-header");
   const posterFooter = document.querySelector("#poster-footer");
-  array.forEach((film) => {
+  data.forEach((film) => {
     // iterating over the array received
     const id = film.id;
     const title = film.title;
