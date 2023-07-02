@@ -84,7 +84,7 @@ body {
 
 /* center div start --- details/tickets */
 
-.center-div {
+#center-div {
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   margin-left: 4%;
@@ -94,7 +94,7 @@ body {
   z-index: 100;
 }
 
-.center-div h3 {
+#center-div h3 {
   font-weight: bold;
   font-family: "Merienda", cursive;
   color: #e0245e;
@@ -112,6 +112,13 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+}
+
+#warning {
+  margin-top: 40px;
+  font-size: 22px;
+  font-weight: bold;
+  color: red;
 }
 
 /* 
@@ -140,12 +147,17 @@ body {
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-#stick-me {
+#poster-header {
   margin-top: 0px;
   position: sticky;
   top: 50px;
   z-index: 100;
   background-color: #e8e8e8;
+}
+
+#poster-box {
+  min-height: 500px;
+  min-width: 450px;
 }
 
 #poster {
@@ -167,6 +179,7 @@ body {
   box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
     rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
   font-size: 22px;
+  padding-inline: 4px;
 }
 
 .icon-container {

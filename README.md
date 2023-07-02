@@ -13,7 +13,7 @@ This challenge involves building out an application, Flatdango, that allows a us
 
 Below is an image of the mini web app:
 
-![Image of the app](resources/screenshot.png)
+![Image of the app](resources/flatdango.png)
 
 ## Project Setup
 
@@ -29,7 +29,12 @@ https://arshavineroy.github.io/phase-1-week-3-code-challenge/
 
 #### How to use the app
 
-...
+- Pick a film on the list and view its details
+- Enter the desired number of tickets in the input field
+- Click the `Buy Tickets` button to purchase
+- If the number of tickets entered exceed the available tickets or the capacity required, an error message is shown to the user.
+- When a movie is sold out, the purchase button should display `Sold Out`
+- (Admin) There is a `ticket reset` button that appears if tickets are depleted to set available tickets to max.
 
 #### Alternatively,
 
