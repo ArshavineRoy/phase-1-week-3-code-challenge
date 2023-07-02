@@ -1,17 +1,21 @@
-const URL = "http://localhost:3000/films";
+const URL =
+  "https://arshavineroy.github.io/phase-1-week-3-code-challenge/db.json";
+
 fetch(URL)
   .then((res) => res.json())
-  .then((data) => handleFilms(data));
-// film list buttons
+  .then((data) => {
+    const array = Object.values(data.films);
+    handleFilms(array);
+  });
 
-function handleFilms(data) {
+function handleFilms(array) {
   const filmDiv = document.createElement("div");
   filmDiv.classList.add("movie-list");
   const posterDiv = document.querySelector("#poster-box");
   const centerDiv = document.querySelector("#center-div");
   const posterHeader = document.querySelector("#poster-header");
   const posterFooter = document.querySelector("#poster-footer");
-  data.forEach((film) => {
+  array.forEach((film) => {
     const id = film.id;
     const title = film.title;
     const runtime = film.runtime;
@@ -193,18 +197,6 @@ function handleFilms(data) {
       movieButton.click();
     }
     movieButton.addEventListener("click", content);
-
-    function updateTickets() {
-      const input = document.querySelector(".input");
-
-      const numberOfTickets = input.value;
-      console.log(numberOfTickets);
-      const newTicketsAvailable = ticketsAvailable - numberOfTickets;
-      console.log(newTicketsAvailable);
-      document.querySelector("#tickets-available").textContent =
-        newTicketsAvailable;
-      console.log(ticketsAvailable);
-    }
   });
 }
 

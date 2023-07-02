@@ -11,9 +11,10 @@ This is a code challenge for Phase 1 Week 3 whose aim is implementing a 'mini' w
 
 This challenge involves building out an application, Flatdango, that allows a user to purchase movie tickets from the Flatiron Movie Theater. I will use a local API and build out a simple front-end for the app.
 
-Below is an image of the mini web app:
+Below are images of the mini web app:
 
-![Image of the app](resources/flatdango.png)
+![Image of the app](resources/flatdango-1.png)
+![Image of the app](resources/flatdango-2.png)
 
 ## Project Setup
 
@@ -32,9 +33,9 @@ https://arshavineroy.github.io/phase-1-week-3-code-challenge/
 - Pick a film on the list and view its details
 - Enter the desired number of tickets in the input field
 - Click the `Buy Tickets` button to purchase
-- If the number of tickets entered exceed the available tickets or the capacity required, an error message is shown to the user.
-- When a movie is sold out, the purchase button should display `Sold Out`
-- (Admin) There is a `ticket reset` button that appears if tickets are depleted to set available tickets to max.
+- If the number of tickets entered exceed the available tickets or the capacity required, an error message is shown on the DOM for the user.
+- When a movie is sold out, the purchase button displays `Sold Out`
+- (Admin) A `ticket reset` button is added to set available tickets to max.
 
 #### Alternatively,
 
