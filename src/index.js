@@ -1,10 +1,10 @@
 const URL =
   "https://arshavineroy.github.io/phase-1-week-3-code-challenge/db.json";
-
+// fetch data from GH Pages
 fetch(URL)
   .then((res) => res.json())
   .then((data) => {
-    const array = Object.values(data.films);
+    const array = Object.values(data.films); // convert object into an array
     handleFilms(array);
   });
 
@@ -16,6 +16,7 @@ function handleFilms(array) {
   const posterHeader = document.querySelector("#poster-header");
   const posterFooter = document.querySelector("#poster-footer");
   array.forEach((film) => {
+    // iterating over the array received
     const id = film.id;
     const title = film.title;
     const runtime = film.runtime;
@@ -26,12 +27,14 @@ function handleFilms(array) {
     const poster = film.poster;
     let ticketsAvailable = film.capacity - film.tickets_sold;
 
+    // create movie list on the left per deliverables
     const movieButton = document.createElement("button");
     document.querySelector(".sidebar").appendChild(filmDiv);
     filmDiv.appendChild(movieButton);
     movieButton.classList.add("button-55");
     movieButton.textContent = title;
 
+    // a function to handle DOM content
     function content() {
       posterDiv.innerHTML = "";
       const filmPoster = document.createElement("img");
@@ -39,7 +42,7 @@ function handleFilms(array) {
       filmPoster.src = poster;
       posterDiv.appendChild(filmPoster);
 
-      // Converting runtime total minutes to hour and minute format
+      // Converting runtime total minutes to hour and minute (2h 43m) format
       const formattedRuntime = `${Math.floor(runtime / 60)}h ${runtime % 60}m`;
 
       // Get current date one-liner
@@ -49,7 +52,7 @@ function handleFilms(array) {
         day: "numeric",
       });
 
-      // center div
+      // center div HTML
       centerDiv.innerHTML = `
           <div>
           <h2>
@@ -119,17 +122,22 @@ function handleFilms(array) {
             <span class="icon-count">Flatiron Movie Theater</span>
           </div>`;
 
+      // handling user input --- number of tickets being purchased
       const input = document.querySelector(".input");
       const buyTicketButton = document.querySelector("#buy-ticket-button");
+
+      // add event listener to "Buy Tickets" button
       buyTicketButton.addEventListener("click", () => {
         const ticketsBought = input.value;
 
+        // setting a conditional so that input doesn't exceed available tickets/capacity
         if (ticketsBought <= ticketsAvailable && ticketsBought <= capacity) {
           let newTickets = Math.max(
             0,
             parseInt(ticketsSold) + parseInt(ticketsBought)
-          );
+          ); // Only positive numbers are returned. Defaults to 0 if negative.
 
+          // PATCH request to update server after tickets are purchased
           fetch(`${URL}/${id}`, {
             method: "PATCH",
             headers: {
@@ -153,13 +161,16 @@ function handleFilms(array) {
               errorMessage("Failed to update tickets.");
             });
         } else {
+          //error message on UI if tickets entered exceed those available
           errorMessage(
             `Only ${ticketsAvailable} tickets can be purchased at this time!`
           );
         }
       });
+      // admin reset tickets to max if depleted. addEventListener to the button
       const resetButton = document.querySelector("#reset");
       resetButton.addEventListener("click", () => {
+        // PATCH request to update server. Setting tickets sold to 0 means max number are available
         fetch(`${URL}/${id}`, {
           method: "PATCH",
           headers: {
@@ -183,6 +194,8 @@ function handleFilms(array) {
             errorMessage("Failed to reset tickets.");
           });
       });
+
+      // change buy tickets & UI with Sold Out text if available tickets are 0
       if (ticketsAvailable === 0) {
         const text = document.querySelector("#purchase-button");
         text.textContent = "Sold Out";
@@ -192,14 +205,16 @@ function handleFilms(array) {
       }
     }
 
+    // setting page to load with first film's content
     if (film.id == 1) {
       content();
-      movieButton.click();
+      movieButton.click(); //simulating default movieButton click
     }
-    movieButton.addEventListener("click", content);
+    movieButton.addEventListener("click", content); //adding event listener on movie list
   });
 }
 
+// function for showing error messages
 function errorMessage(error) {
   document.querySelector("#warning").innerHTML = `
   <i class="fa fa-triangle-exclamation" style="color: #ff0000"></i>
