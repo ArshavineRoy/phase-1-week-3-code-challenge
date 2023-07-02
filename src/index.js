@@ -1,20 +1,18 @@
-fetch("https://arshavineroy.github.io/phase-1-week-3-code-challenge/db.json")
+const URL = "http://localhost:3000/films";
+fetch(URL)
   .then((res) => res.json())
-  .then((data) => {
-    const array = Object.values(data.films);
-    handleFilms(array);
-  });
-
+  .then((data) => handleFilms(data));
 // film list buttons
 
-function handleFilms(array) {
+function handleFilms(data) {
   const filmDiv = document.createElement("div");
   filmDiv.classList.add("movie-list");
   const posterDiv = document.querySelector("#poster-box");
   const centerDiv = document.querySelector("#center-div");
   const posterHeader = document.querySelector("#poster-header");
   const posterFooter = document.querySelector("#poster-footer");
-  array.forEach((film) => {
+  data.forEach((film) => {
+    const id = film.id;
     const title = film.title;
     const runtime = film.runtime;
     let capacity = film.capacity;
@@ -22,13 +20,14 @@ function handleFilms(array) {
     let ticketsSold = film.tickets_sold;
     const synopsis = film.description;
     const poster = film.poster;
-    let titcketsAvailable = film.capacity - film.tickets_sold;
+    let ticketsAvailable = film.capacity - film.tickets_sold;
 
     const movieButton = document.createElement("button");
     document.querySelector(".sidebar").appendChild(filmDiv);
     filmDiv.appendChild(movieButton);
     movieButton.classList.add("button-55");
     movieButton.textContent = title;
+
     function content() {
       posterDiv.innerHTML = "";
       const filmPoster = document.createElement("img");
@@ -39,7 +38,7 @@ function handleFilms(array) {
       // Converting runtime total minutes to hour and minute format
       const formattedRuntime = `${Math.floor(runtime / 60)}h ${runtime % 60}m`;
 
-      // Get curretnt date one-liner
+      // Get current date one-liner
       const currentDate = new Date().toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
@@ -62,13 +61,13 @@ function handleFilms(array) {
               Date: ${currentDate}<br />
               Runtime: ${runtime} minutes <br />
               Showtime: ${showtime}<br />
-              Tickets Available: ${capacity - ticketsSold}<br />
+              Tickets Available: <span id="tickets-available">${ticketsAvailable}</span><br />
               Synopsis: ${synopsis}
             </h4>
           </div>
           <div class="tickets">
             <h3>Purchase a Ticket</h3>
-            <h4>
+            <h4 id="purchase-intro">
               <span style="color: #69daba;">${title}</span> is now playing at the Flatiron Movie Theatre. Choose the number of tickets below. This is equivalent to the number
               of seats reserved.
             </h4>
@@ -77,21 +76,23 @@ function handleFilms(array) {
               <input
                 type="number"
                 min="1"
-                max= ${capacity}
+                max="${capacity}"
                 placeholder="Number of Tickets"
                 name="text"
                 class="input"
               />
               <a class="fancy" href="#" id="buy-ticket-button">
                 <span class="top-key"></span>
-                <span class="text">Buy Tickets</span>
+                <span class="text" id='purchase-button'>Buy Tickets</span>
                 <span class="bottom-key-1"></span>
                 <span class="bottom-key-2"></span>
               </a>
             </div>
+            <button id="reset">
+              <b>Reset Tickets</b>
+            </button>
             <div id="warning">
             </div>
-
           </div>`;
 
       // poster header
@@ -117,20 +118,74 @@ function handleFilms(array) {
       const input = document.querySelector(".input");
       const buyTicketButton = document.querySelector("#buy-ticket-button");
       buyTicketButton.addEventListener("click", () => {
-        const numberOfTickets = input.value;
-        console.log(numberOfTickets);
-        //console.log(`titcketsAvailable: ${titcketsAvailable}`);
-        //titcketsAvailable = titcketsAvailable - numberOfTickets;
-        //console.log(`titcketsAvailable: ${titcketsAvailable}`);
+        const ticketsBought = input.value;
 
-        if (numberOfTickets > titcketsAvailable || numberOfTickets > capacity) {
-          errorMessage(
-            `Only ${titcketsAvailable} tickets can be purchased at this time!`
+        if (ticketsBought <= ticketsAvailable && ticketsBought <= capacity) {
+          let newTickets = Math.max(
+            0,
+            parseInt(ticketsSold) + parseInt(ticketsBought)
           );
+
+          fetch(`${URL}/${id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              tickets_sold: newTickets,
+            }),
+          })
+            .then((res) => {
+              if (!res.ok) {
+                throw new Error("Failed to update tickets.");
+              }
+              // Display success message or update UI
+              console.log("Tickets updated successfully.");
+            })
+            .catch((error) => {
+              // Handle error
+              console.error(error);
+              errorMessage("Failed to update tickets.");
+            });
         } else {
-          document.querySelector("#warning").innerHTML = "";
+          errorMessage(
+            `Only ${ticketsAvailable} tickets can be purchased at this time!`
+          );
         }
       });
+      const resetButton = document.querySelector("#reset");
+      resetButton.addEventListener("click", () => {
+        fetch(`${URL}/${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            tickets_sold: "0",
+          }),
+        })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("Failed to reset tickets.");
+            }
+            // Display success message or update UI
+            console.log("Tickets reset successfully.");
+          })
+          .catch((error) => {
+            // Handle error
+            console.error(error);
+            errorMessage("Failed to reset tickets.");
+          });
+      });
+      if (ticketsAvailable === 0) {
+        const text = document.querySelector("#purchase-button");
+        text.textContent = "Sold Out";
+        document.querySelector(
+          "#purchase-intro"
+        ).textContent = `${title} is currently SOLD OUT. Try again tomorrow.`;
+      }
     }
 
     if (film.id == 1) {
@@ -138,15 +193,24 @@ function handleFilms(array) {
       movieButton.click();
     }
     movieButton.addEventListener("click", content);
+
+    function updateTickets() {
+      const input = document.querySelector(".input");
+
+      const numberOfTickets = input.value;
+      console.log(numberOfTickets);
+      const newTicketsAvailable = ticketsAvailable - numberOfTickets;
+      console.log(newTicketsAvailable);
+      document.querySelector("#tickets-available").textContent =
+        newTicketsAvailable;
+      console.log(ticketsAvailable);
+    }
   });
 }
 
 function errorMessage(error) {
   document.querySelector("#warning").innerHTML = `
-  <i
-    class="fa fa-triangle-exclamation"
-    style="color: #ff0000"
-  ></i>
+  <i class="fa fa-triangle-exclamation" style="color: #ff0000"></i>
   <span class="text">${error}</span>
   `;
 }
