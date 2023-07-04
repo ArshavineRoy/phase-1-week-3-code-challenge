@@ -108,15 +108,15 @@ function handleFilms(data) {
       posterFooter.innerHTML = `
           <div class="icon-container">
             <i class="fa-regular fa-calendar-days"></i>
-            <span class="icon-count" id="vote-count">${currentDate}</span>
+            <span>${currentDate}</span>
           </div>
-          <div class="icon-container" id="comment">
+          <div class="icon-container">
             <i class="fa-regular fa-clock"></i>
-            <span class="icon-count" id="comment-count">${formattedRuntime}</span>
+            <span>${formattedRuntime}</span>
           </div>
-          <div class="icon-container" id="share">
+          <div class="icon-container">
             <i class="fa fa-location-dot"></i>
-            <span class="icon-count">Flatiron Movie Theater</span>
+            <span>Flatiron Movie Theater</span>
           </div>`;
 
       // handling user input --- number of tickets being purchased
@@ -128,7 +128,7 @@ function handleFilms(data) {
         const ticketsBought = input.value;
 
         // setting a conditional so that input doesn't exceed available tickets/capacity
-        if (ticketsBought <= ticketsAvailable && ticketsBought <= capacity) {
+        if (ticketsBought <= ticketsAvailable) {
           let newTickets = Math.max(
             0,
             parseInt(ticketsSold) + parseInt(ticketsBought)
@@ -149,7 +149,7 @@ function handleFilms(data) {
               if (!res.ok) {
                 throw new Error("Failed to update tickets.");
               }
-              // Display success message or update UI
+              // Log success message
               console.log("Tickets updated successfully.");
             })
             .catch((error) => {
@@ -182,13 +182,13 @@ function handleFilms(data) {
             if (!res.ok) {
               throw new Error("Failed to reset tickets.");
             }
-            // Display success message or update UI
+            // Log success message
             console.log("Tickets reset successfully.");
           })
           .catch((error) => {
             // Handle error
             console.error(error);
-            errorMessage("Failed to reset tickets.");
+            errorMessage("Failed to reset tickets."); // calling error message function
           });
       });
 
