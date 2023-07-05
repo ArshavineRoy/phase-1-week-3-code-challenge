@@ -1,5 +1,5 @@
 // fetch film data
-const URL = "http://localhost:3000/films";
+const URL = "https://flatdango-server.onrender.com/films";
 fetch(URL)
   .then((res) => res.json())
   .then((data) => handleFilms(data));
@@ -166,7 +166,8 @@ function handleFilms(data) {
       });
       // admin reset tickets to max if depleted. addEventListener to the button
       const resetButton = document.querySelector("#reset");
-      resetButton.addEventListener("click", () => {
+      resetButton.addEventListener("click", (e) => {
+        e.preventDefault();
         // PATCH request to update server. Setting tickets sold to 0 means max number are available
         fetch(`${URL}/${id}`, {
           method: "PATCH",
@@ -182,8 +183,6 @@ function handleFilms(data) {
             if (!res.ok) {
               throw new Error("Failed to reset tickets.");
             }
-            // Log success message
-            console.log("Tickets reset successfully.");
           })
           .catch((error) => {
             // Handle error
