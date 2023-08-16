@@ -1,9 +1,9 @@
-# Phase 1 : Week 3 Code Challenge
+# Flatdango: A Mini Web App
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com)
 
-## Flatdango: A Mini Web App
+## Phase 1 : Week 3 Code Challenge 
 
 ## Introduction
 
